@@ -154,9 +154,10 @@ The skill will:
 
 ### Bold Template Pack
 
-The skill also includes 34 optional bold design systems from
+The skill also includes 35 optional bold design systems: 34 from
 `beautiful-html-templates`, such as **Neo-Grid Bold**, **Editorial Tri-Tone**,
-**Creative Mode**, **Broadside**, **Signal**, and **Vellum**.
+**Creative Mode**, **Broadside**, **Signal**, and **Vellum**, plus the team house
+style **Seed Academy** (see below).
 
 During style discovery, the preview set is:
 
@@ -172,7 +173,18 @@ the agent expands that preview's own CSS and layout system into the full deck.
 
 ## Bold Template Gallery
 
-Frontend Slides can now draw from the 34 bold design systems in [`beautiful-html-templates`](https://github.com/zarazhangrui/beautiful-html-templates). Three screenshots per template show how each visual system handles different slide layouts. Click any template name to inspect the source template library.
+### [Seed Academy](bold-template-pack/templates/seed-academy/) · team house style
+
+<p>
+  <img src="bold-template-pack/templates/seed-academy/screenshots/seed-academy-1.png" width="32.5%" alt="Seed Academy — cover" />
+  <img src="bold-template-pack/templates/seed-academy/screenshots/seed-academy-2.png" width="32.5%" alt="Seed Academy — keyword list" />
+  <img src="bold-template-pack/templates/seed-academy/screenshots/seed-academy-3.png" width="32.5%" alt="Seed Academy — statement" />
+</p>
+
+> The Seed Academy (习得学堂) team's own look: forest-green stage, fields of soft green dots, and exactly one orange speech-bubble dot per slide; heavy Noto Sans SC headlines and red key phrases on a whiteboard surface. Open [`example.html`](bold-template-pack/templates/seed-academy/example.html) for a six-slide reference deck. Ask for it by name — e.g. "make the slides in the Seed Academy style".
+
+
+Beyond the team style above, Frontend Slides can draw from the 34 bold design systems in [`beautiful-html-templates`](https://github.com/zarazhangrui/beautiful-html-templates). Three screenshots per template show how each visual system handles different slide layouts. Click any template name to inspect the source template library.
 
 ### [Soft Editorial](https://github.com/zarazhangrui/beautiful-html-templates/tree/main/templates/soft-editorial/)
 

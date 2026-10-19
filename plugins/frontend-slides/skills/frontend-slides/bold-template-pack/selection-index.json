@@ -2,7 +2,7 @@
   "schema_version": 1,
   "pack_name": "Beautiful HTML Templates - Bold Design Pack",
   "source_repo": "zarazhangrui/beautiful-html-templates",
-  "template_count": 34,
+  "template_count": 35,
   "usage": {
     "selection": "Read this compact index first to shortlist bold templates from metadata.",
     "previews": "For title-slide previews, read only the preview_md files for the shortlisted bold candidates.",
@@ -853,6 +853,31 @@
       "avoid_for": "Contexts that need visual heat or pop — the navy + warm-yellow Cormorant aesthetic is intentionally low-tempo.",
       "preview_md": "bold-template-pack/templates/vellum/preview.md",
       "design_md": "bold-template-pack/templates/vellum/design.md"
+    },
+    {
+      "slug": "seed-academy",
+      "name": "Seed Academy",
+      "tagline": "Seed Academy team house style — forest-green stage, fields of soft green dots, and one orange speech-bubble dot.",
+      "mood": [
+        "warm",
+        "trustworthy",
+        "educational",
+        "school-assembly",
+        "hopeful"
+      ],
+      "tone": [
+        "clear",
+        "caring",
+        "grounded",
+        "community"
+      ],
+      "formality": "medium",
+      "density": "low",
+      "scheme": "mixed",
+      "best_for": "Anything presented by or for the Seed Academy (习得学堂) team: strategy briefings, parent meetings, school / class assemblies, programme launches, teacher training, education and community decks — especially Chinese-language decks projected in classrooms and halls.",
+      "avoid_for": "Dense data reports, luxury or nightlife brands, or decks that must look editorial / serif — the system is heavy-sans and deliberately plain.",
+      "preview_md": "bold-template-pack/templates/seed-academy/preview.md",
+      "design_md": "bold-template-pack/templates/seed-academy/design.md"
     }
   ]
 }

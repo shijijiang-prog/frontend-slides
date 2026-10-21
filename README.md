@@ -36,7 +36,7 @@ https://github.com/user-attachments/assets/ef57333e-f879-432a-afb9-180388982478
 Install directly from this public GitHub repo. Run these as two separate Claude Code messages; do not paste both lines into the prompt at once.
 
 ```text
-/plugin marketplace add https://github.com/zarazhangrui/frontend-slides
+/plugin marketplace add https://github.com/shijijiang-prog/frontend-slides
 ```
 
 After that finishes, run:
@@ -45,7 +45,7 @@ After that finishes, run:
 /plugin install frontend-slides@frontend-slides
 ```
 
-Use the HTTPS URL. The shorter `zarazhangrui/frontend-slides` form may make Claude Code try SSH, which can fail if GitHub is not already in your `known_hosts` file.
+Use the HTTPS URL. The shorter `shijijiang-prog/frontend-slides` form may make Claude Code try SSH, which can fail if GitHub is not already in your `known_hosts` file.
 
 Then use it by typing `/frontend-slides:frontend-slides` in Claude Code. Claude Code namespaces plugin-installed skills as `/plugin-name:skill-name`.
 
@@ -66,7 +66,7 @@ cp scripts/extract-pptx.py scripts/deploy.sh scripts/export-pdf.sh ~/.claude/ski
 Or clone directly:
 
 ```bash
-git clone https://github.com/zarazhangrui/frontend-slides.git ~/.claude/skills/frontend-slides
+git clone https://github.com/shijijiang-prog/frontend-slides.git ~/.claude/skills/frontend-slides
 ```
 
 Then use it by typing `/frontend-slides` in Claude Code. Standalone skills are not namespaced.
@@ -76,7 +76,7 @@ Then use it by typing `/frontend-slides` in Claude Code. Standalone skills are n
 Agents such as Codex, Kimi Code, OpenCode, Gemini CLI, or other local coding assistants can use the same core skill. The simplest path is to send the agent this GitHub repo link and ask it to use the Frontend Slides skill:
 
 ```text
-https://github.com/zarazhangrui/frontend-slides
+https://github.com/shijijiang-prog/frontend-slides
 ```
 
 If the agent can read GitHub repos or browse files, it should start from `SKILL.md` and load only the referenced support files it needs:
@@ -599,7 +599,7 @@ Uses [Playwright](https://playwright.dev) to screenshot each slide at 1920×1080
 
 ## Credits
 
-Created by [@zarazhangrui](https://github.com/zarazhangrui).
+Created by [@zarazhangrui](https://github.com/zarazhangrui). This repo is a fork maintained by [@shijijiang-prog](https://github.com/shijijiang-prog), adding the team **Seed Academy** style; upstream: [zarazhangrui/frontend-slides](https://github.com/zarazhangrui/frontend-slides).
 
 ## License
 

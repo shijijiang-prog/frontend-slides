@@ -1,0 +1,75 @@
+/* joymaker: opt-in visual theme. Pair with the complete viewport-base.css.
+   All measurements are on the fixed 1920×1080 stage. */
+.joymaker {
+    --jm-surface: #edf1f2;
+    --jm-card: #fff;
+    --jm-navy: #1c385f;
+    --jm-body: #606568;
+    --jm-muted: #747a7e;
+    --jm-orange: #f45100;
+    --jm-coral: #f46b43;
+    --jm-red: #c81036;
+    --jm-line: #d9dee0;
+    --jm-font: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    --stage-bg: #192536;
+    --slide-bg: var(--jm-surface);
+    font-family: var(--jm-font);
+    color: var(--jm-body);
+}
+.joymaker .slide { padding: 80px 112px 88px; }
+.joymaker .slide *, .joymaker .slide *::before, .joymaker .slide *::after { box-sizing: border-box; }
+.joymaker .slide :is(h1, h2, h3, p, dl, dd) { margin: 0; }
+.joymaker .jm-brand { position: absolute; top: 76px; right: 112px; color: var(--jm-body); font-size: 32px; font-weight: 600; line-height: 1.35; }
+.joymaker .jm-brand small { display: block; margin-top: 6px; font-size: 16px; letter-spacing: .3em; }
+.joymaker .jm-header { position: relative; width: 1400px; padding-left: 40px; }
+.joymaker .jm-header::before { content: ''; position: absolute; left: 0; top: 8px; width: 16px; height: 86px; background: var(--jm-red); }
+.joymaker .jm-header h2 { color: var(--jm-navy); font-size: 60px; font-weight: 900; line-height: 1.4; }
+.joymaker .jm-header p { margin-top: 24px; font-size: 28px; line-height: 1.6; }
+.joymaker .jm-footer { position: absolute; bottom: 48px; left: 112px; right: 112px; border-top: 2px solid var(--jm-line); padding-top: 14px; display: flex; justify-content: space-between; font-size: 20px; color: var(--jm-muted); }
+.joymaker .jm-logo { position: absolute; top: 48px; right: 112px; width: 280px; height: auto; object-fit: contain; }
+.joymaker .jm-cover .jm-logo { top: 96px; left: 112px; right: auto; width: 460px; }
+.joymaker .jm-logo-tagline { position: absolute; left: 273px; top: 196px; color: #fff; font-size: 26px; font-weight: 600; line-height: 1.4; letter-spacing: 10px; white-space: nowrap; }
+/* Warm covers, with two quiet curves instead of the dense screenshot waves. */
+.joymaker .jm-cover { background: linear-gradient(135deg, #ffa451 0%, #ff8438 50%, #ff5725 100%); color: #fff; }
+.joymaker .jm-cover::before, .joymaker .jm-cover::after { content: ''; position: absolute; border: 2px solid rgba(255,255,255,.13); border-radius: 50%; width: 2300px; height: 1100px; left: -150px; top: 360px; transform: rotate(-10deg); pointer-events: none; }
+.joymaker .jm-cover::after { top: 420px; left: -120px; border-color: rgba(255,225,151,.18); }
+.joymaker .jm-cover .jm-brand { top: 96px; left: 112px; right: auto; color: #fff; font-size: 48px; }
+.joymaker .jm-cover .jm-brand small { font-size: 20px; }
+.joymaker .jm-cover-copy { position: absolute; left: 112px; right: 112px; top: 500px; z-index: 1; }
+.joymaker .jm-cover h1, .joymaker .jm-cover h2 { font-size: 108px; line-height: 1.35; font-weight: 900; letter-spacing: .02em; }
+.joymaker .jm-cover-copy p { margin-top: 32px; font-size: 32px; line-height: 1.5; }
+.joymaker .jm-cover .jm-footer { color: #fff; border-color: rgba(255,255,255,.4); }
+/* Text-led business overview. Cards are reserved for numerical evidence. */
+.joymaker .jm-overview { margin-top: 100px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+.joymaker .jm-overview h3 { font-size: 34px; line-height: 1.35; color: var(--jm-orange); font-weight: 800; }
+.joymaker .jm-overview p { margin-top: 20px; font-size: 28px; line-height: 1.6; }
+.joymaker .jm-section-label { margin-top: 72px !important; padding-top: 28px; border-top: 2px solid var(--jm-line); font-size: 28px; font-weight: 600; }
+.joymaker .jm-kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin-top: 32px; }
+.joymaker .jm-card { padding: 40px; border-radius: 24px; background: var(--jm-card); }
+.joymaker .jm-value { color: var(--jm-orange); font-size: 78px; font-weight: 800; line-height: 1.35; font-variant-numeric: tabular-nums; }
+.joymaker .jm-value small { font-size: 32px; }
+.joymaker .jm-card p { margin-top: 16px; font-size: 24px; line-height: 1.45; }
+/* Two aligned metric cards with four supporting values each. */
+.joymaker .jm-comparison { margin-top: 150px; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.joymaker .jm-comparison .jm-card { min-height: 430px; padding: 44px; }
+.joymaker .jm-card h3 { color: var(--jm-coral); font-size: 34px; font-weight: 800; line-height: 1.35; margin-bottom: 20px; }
+.joymaker .jm-metrics { margin-top: 28px !important; padding-top: 24px; border-top: 2px solid var(--jm-line); display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.joymaker .jm-metrics dt { color: var(--jm-muted); font-size: 24px; line-height: 1.45; }
+.joymaker .jm-metrics dd { color: var(--jm-orange); font-size: 40px; font-weight: 800; line-height: 1.4; margin-top: 12px; }
+/* Open columns keep narrative slides distinct from the KPI layouts. */
+.joymaker .jm-roadmap { margin-top: 140px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 64px; }
+.joymaker .jm-step { border-top: 2px solid var(--jm-line); padding-top: 32px; }
+.joymaker .jm-step .jm-value { font-size: 64px; }
+.joymaker .jm-step h3 { margin-top: 28px; color: var(--jm-navy); font-size: 38px; line-height: 1.35; }
+.joymaker .jm-step p { margin-top: 28px; font-size: 28px; line-height: 1.7; }
+.joymaker .jm-closing .jm-cover-copy { top: 440px; }
+/* Optional restrained entrance, disabled for print and reduced motion. */
+.joymaker .jm-reveal { opacity: 0; transform: translateY(12px); transition: opacity .24s ease, transform .24s ease; }
+.joymaker .slide.active .jm-reveal, .joymaker .slide.visible .jm-reveal { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+    .joymaker .jm-reveal { transition: none !important; transform: none; }
+}
+@media print {
+    .joymaker .jm-reveal { opacity: 1; transform: none; }
+    .joymaker .slide { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+}

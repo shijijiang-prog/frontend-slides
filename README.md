@@ -154,10 +154,10 @@ The skill will:
 
 ### Bold Template Pack
 
-The skill also includes 35 optional bold design systems: 34 from
+The skill also includes 36 optional bold design systems: 34 from
 `beautiful-html-templates`, such as **Neo-Grid Bold**, **Editorial Tri-Tone**,
 **Creative Mode**, **Broadside**, **Signal**, and **Vellum**, plus the team house
-style **Seed Academy** (see below).
+styles **Seed Academy** and **joymaker** (see below).
 
 During style discovery, the preview set is:
 
@@ -173,6 +173,39 @@ the agent expands that preview's own CSS and layout system into the full deck.
 
 ## Bold Template Gallery
 
+### [joymaker](bold-template-pack/templates/joymaker/) · minimal business theme
+
+Screenshots below show the included PowerPoint reference deck.
+
+<p>
+  <img src="bold-template-pack/templates/joymaker/screenshots/joymaker-1.png" width="32.5%" alt="joymaker — orange cover" />
+  <img src="bold-template-pack/templates/joymaker/screenshots/joymaker-2.png" width="32.5%" alt="joymaker — business overview" />
+  <img src="bold-template-pack/templates/joymaker/screenshots/joymaker-3.png" width="32.5%" alt="joymaker — metric comparison" />
+</p>
+
+> Inspired by three supplied 欢乐互娱 references: a warm orange gradient cover,
+> light-gray content pages, deep navy titles with crimson markers, and white
+> cards with orange KPIs. Existing themes stay intact. Open
+> [`example.html`](bold-template-pack/templates/joymaker/example.html) for an
+> offline five-slide example using illustrative content. Ask for “joymaker 风格”.
+> The scoped [`joymaker.css`](bold-template-pack/templates/joymaker/joymaker.css)
+> can also be applied without replacing an existing presentation controller.
+
+The example supports arrows/Space/PageUp/PageDown/Home/End, touch, wheel,
+contents (T), page jump, fullscreen (F), and a single-window presenter view (P)
+with notes, next-page title, and timer. E toggles inline editing; edits are saved
+locally when browser storage is available; Download saves a standalone HTML.
+Data and text in this reference deck are illustrative, not company disclosures;
+content pages embed the supplied original 欢乐互娱 logo unchanged; orange covers use the white lockup from the reference cover. Full source screenshots are not included.
+
+An editable PowerPoint version is included as
+[`example.pptx`](bold-template-pack/templates/joymaker/example.pptx), with native
+text, cards, and speaker notes. To rebuild it, install the optional `pptxgenjs`
+and `sharp` packages in a temporary tools directory and run
+`node scripts/build-joymaker-pptx.cjs [output.pptx]` (use `NODE_PATH` for that
+tools directory). HTML generation still needs no dependencies. Run
+`python3 scripts/verify-joymaker.py` to check theme packaging and artifacts.
+
 ### [Seed Academy](bold-template-pack/templates/seed-academy/) · team house style
 
 <p>
@@ -184,7 +217,7 @@ the agent expands that preview's own CSS and layout system into the full deck.
 > The Seed Academy (习得学堂) team's own look: forest-green stage, fields of soft green dots, and exactly one orange speech-bubble dot per slide; heavy Noto Sans SC headlines and red key phrases on a whiteboard surface. Open [`example.html`](bold-template-pack/templates/seed-academy/example.html) for a six-slide reference deck. Ask for it by name — e.g. "make the slides in the Seed Academy style".
 
 
-Beyond the team style above, Frontend Slides can draw from the 34 bold design systems in [`beautiful-html-templates`](https://github.com/zarazhangrui/beautiful-html-templates). Three screenshots per template show how each visual system handles different slide layouts. Click any template name to inspect the source template library.
+Beyond the two team styles above, Frontend Slides can draw from the 34 bold design systems in [`beautiful-html-templates`](https://github.com/zarazhangrui/beautiful-html-templates). Three screenshots per template show how each visual system handles different slide layouts. Click any template name to inspect the source template library.
 
 ### [Soft Editorial](https://github.com/zarazhangrui/beautiful-html-templates/tree/main/templates/soft-editorial/)
 

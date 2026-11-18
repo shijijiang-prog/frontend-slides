@@ -298,6 +298,23 @@ Curated visual styles for Frontend Slides. Each preset is inspired by real desig
 
 ---
 
+## Additional Brand Themes
+
+### joymaker · 欢乐互娱-inspired minimal business theme
+
+A separate opt-in template, alongside the 12 presets above. Warm orange gradient
+covers with white type; cool light-gray content surfaces; navy headings with a
+crimson vertical marker; white rounded metric cards with orange numerals.
+Chinese-first Noto Sans SC with local CJK fallbacks for offline use.
+
+Read the [preview card](bold-template-pack/templates/joymaker/preview.md) for
+style discovery, then [design.md](bold-template-pack/templates/joymaker/design.md)
+after selection. The [self-contained example](bold-template-pack/templates/joymaker/example.html)
+uses illustrative content and includes playback, presenter, editing, and export
+controls. Theme CSS is scoped to `.joymaker`; existing presets remain unchanged.
+
+---
+
 ## Font Pairing Quick Reference
 
 | Preset | Display Font | Body Font | Source |

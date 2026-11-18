@@ -62,7 +62,7 @@ def verify(baseline=None):
     assert len(set(parser.ids)) == len(parser.ids), 'Duplicate IDs'
     assert all(s.get('data-notes') for s in parser.slides)
     for n, image in enumerate(parser.images):
-        asset = 'logo-white.png' if n in (0, 4) else 'logo-original.png'
+        asset = 'logo-white-mark.png' if n in (0, 4) else 'logo-original.png'
         assert base64.b64decode(image['src'].split(',', 1)[1]) == (THEME / 'assets' / asset).read_bytes()
         assert image.get('alt')
     assert (ROOT / 'viewport-base.css').read_text() in html
@@ -84,7 +84,7 @@ def verify(baseline=None):
         dims = ET.fromstring(z.read('ppt/presentation.xml')).find('p:sldSz', ns)
         assert abs(int(dims.attrib['cx']) / int(dims.attrib['cy']) - 16 / 9) < .0001
         media = [z.read(n) for n in z.namelist() if n.startswith('ppt/media/')]
-        for asset in ('logo-original.png', 'logo-white.png'):
+        for asset in ('logo-original.png', 'logo-white-mark.png'):
             assert (THEME / 'assets' / asset).read_bytes() in media, 'Logo bytes changed: ' + asset
         expected = ['欢乐互娱公司介绍', '业务布局与核心能力', '产品测试与用户反馈', '下一阶段，聚焦三件事', '欢乐从这里开始']
         for name, title in zip(slides, expected):
@@ -92,6 +92,8 @@ def verify(baseline=None):
             assert title in ''.join(n.text or '' for n in tree.findall('.//a:t', ns))
             assert len(tree.findall('.//p:sp', ns)) > 4, 'Slide flattened instead of editable'
             assert tree.findall('.//p:pic', ns), 'Missing logo'
+            if title in (expected[0], expected[4]):
+                assert any(n.text == '欢乐从这里开始' for n in tree.findall('.//a:t', ns)), 'Slogan must stay native text'
     print('PASS: valid 16:9 PPTX, five editable slides, five notes, original logo bytes embedded')
 
     if baseline:

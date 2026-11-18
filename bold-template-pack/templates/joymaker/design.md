@@ -80,9 +80,13 @@ identified illustrative data and does not reproduce the uploaded operating
 figures, game logos, personnel information, or screenshot watermarks. It embeds
 the separately supplied original 欢乐互娱 logo, byte-for-byte, from
 `assets/logo-original.png` on content pages. Orange covers use
-`assets/logo-white.png`, the existing white lockup extracted from the supplied
-orange cover with a native SVG mask. It has real transparency; retain its
-original strokes, text, and proportions. No gray background plaque on covers.
+`assets/logo-white-mark.png`, retaining the original white sun and company name
+from the reference cover. The source lockup is retained in `logo-white.png`;
+`logo-white-mark.svg` clips its tiny raster slogan without changing the symbol.
+The slogan 欢乐从这里开始 is set separately as crisp native white text: 26px,
+weight 600 (bold in PowerPoint), 10px tracking, at (273, 196). The logo is
+460px wide at (112, 96). This prevents small screenshot lettering from fading
+when scaled. No gray background plaque on covers.
 For other brands, use their supplied assets or a text wordmark fallback.
 
 Do not bundle the three original screenshots in a public theme package.

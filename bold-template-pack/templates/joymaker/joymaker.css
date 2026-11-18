@@ -27,7 +27,8 @@
 .joymaker .jm-header p { margin-top: 24px; font-size: 28px; line-height: 1.6; }
 .joymaker .jm-footer { position: absolute; bottom: 48px; left: 112px; right: 112px; border-top: 2px solid var(--jm-line); padding-top: 14px; display: flex; justify-content: space-between; font-size: 20px; color: var(--jm-muted); }
 .joymaker .jm-logo { position: absolute; top: 48px; right: 112px; width: 280px; height: auto; object-fit: contain; }
-.joymaker .jm-cover .jm-logo { top: 96px; left: 112px; right: auto; width: 410px; }
+.joymaker .jm-cover .jm-logo { top: 96px; left: 112px; right: auto; width: 460px; }
+.joymaker .jm-logo-tagline { position: absolute; left: 273px; top: 196px; color: #fff; font-size: 26px; font-weight: 600; line-height: 1.4; letter-spacing: 10px; white-space: nowrap; }
 /* Warm covers, with two quiet curves instead of the dense screenshot waves. */
 .joymaker .jm-cover { background: linear-gradient(135deg, #ffa451 0%, #ff8438 50%, #ff5725 100%); color: #fff; }
 .joymaker .jm-cover::before, .joymaker .jm-cover::after { content: ''; position: absolute; border: 2px solid rgba(255,255,255,.13); border-radius: 50%; width: 2300px; height: 1100px; left: -150px; top: 360px; transform: rotate(-10deg); pointer-events: none; }

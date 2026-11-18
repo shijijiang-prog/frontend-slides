@@ -30,7 +30,9 @@ numbers; gray descriptions and thin dividers. Keep generous empty space.
   Microsoft YaHei. No decorative Latin display face.
 - Fixed 1920×1080 canvas; 112px side margins; cover title 108px; content title
   60px; body 28px; KPI 78px; label 24px. All are design-space measurements.
-- Cover: small brand at top-left, large title below the midpoint; at most two
+- Cover: original white symbol/name at top-left, 460px wide; set the slogan
+  欢乐从这里开始 as native 26px white semibold text with 10px tracking.
+  Keep the tiny slogan out of the raster mark. Use a large title below the midpoint; at most two
   faint curves, behind the text. No textures or elaborate wave fields.
 - Content: brand at top-right, title at top-left, slim bottom rule. Use cards
   for metrics only, not as a wrapper for every sentence.

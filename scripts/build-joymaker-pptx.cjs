@@ -39,8 +39,10 @@ async function main() {
         const slide = pptx.addSlide();
         slide.background = {color:colors.surface};
         if(cover) slide.addImage({data:background,x:0,y:0,w:unit(1920),h:unit(1080)});
-        const lw=cover?410:280;
-        slide.addImage({path:cover?path.join(theme,'assets/logo-white.png'):logo,x:unit(cover?112:1528),y:unit(cover?96:48),w:unit(lw),h:unit(lw*(cover?130/400:208/550)),altText:cover?'参考封面的原始白色 Logo':'欢乐互娱原始 Logo：欢乐从这里开始'});
+        const lw=cover?460:280;
+        slide.addImage({path:cover?path.join(theme,'assets/logo-white-mark.png'):logo,x:unit(cover?112:1528),y:unit(cover?96:48),w:unit(lw),h:unit(lw*(cover?130/400:208/550)),altText:cover?'参考封面的原始白色 Logo':'欢乐互娱原始 Logo：欢乐从这里开始'});
+        // Native text keeps the small reference slogan crisp at any zoom.
+        if(cover) text(slide,'欢乐从这里开始',273,196,290,40,26,{color:'FFFFFF',bold:true,charSpacing:5});
         rule(slide,112,1000,1696,cover?'FFD0B0':colors.line);
         text(slide,page===2||page===3?'示例内容与数据，不代表公司披露':'公司介绍 · 示例内容',112,1016,1250,30,20,{color:cover?'FFFFFF':colors.muted});
         text(slide,`${String(page).padStart(2,'0')} / 05`,1650,1016,158,30,20,{color:cover?'FFFFFF':colors.muted,align:'right'});

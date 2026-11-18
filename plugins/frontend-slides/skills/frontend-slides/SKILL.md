@@ -141,6 +141,19 @@ If the user already gave a vibe, use it. If they did not, infer the likely mood 
 
 If the user explicitly names a preset or bold template, honor that as one option and generate the remaining preview slots around it.
 
+**Brand theme — joymaker:** When the user names `joymaker` or requests the
+欢乐互娱 reference look, use its entry in
+[the selection index](bold-template-pack/selection-index.json) and its
+[preview card](bold-template-pack/templates/joymaker/preview.md). After selection,
+read [joymaker/design.md](bold-template-pack/templates/joymaker/design.md) and inline
+[joymaker.css](bold-template-pack/templates/joymaker/joymaker.css) after the full
+`viewport-base.css`; set `class="joymaker"` on the body. Preserve the existing
+presentation controller and speaker/editing features when restyling a deck.
+For this theme, the reference's plain CJK sans, solid light-gray content surfaces,
+white data cards, and orange gradient cover take precedence over the general
+font/background advice above. Noto Sans SC is preferred; local CJK fallbacks are
+allowed for offline decks. This theme is opt-in and does not alter other styles.
+
 Read [STYLE_PRESETS.md](STYLE_PRESETS.md) for safe preset candidates. If [bold-template-pack/selection-index.json](bold-template-pack/selection-index.json) exists, read that compact index too, but do not read any `design.md` files yet.
 
 | Mood                | Suggested Presets                                  |

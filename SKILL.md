@@ -153,6 +153,8 @@ For this theme, the reference's plain CJK sans, solid light-gray content surface
 white data cards, and orange gradient cover take precedence over the general
 font/background advice above. Noto Sans SC is preferred; local CJK fallbacks are
 allowed for offline decks. This theme is opt-in and does not alter other styles.
+Reserve the cover logo for the opening slide. All later title/section pages
+use `jm-cover jm-section-title` without logo, brand, or slogan markup.
 
 Read [STYLE_PRESETS.md](STYLE_PRESETS.md) for safe preset candidates. If [bold-template-pack/selection-index.json](bold-template-pack/selection-index.json) exists, read that compact index too, but do not read any `design.md` files yet.
 

@@ -58,13 +58,17 @@ def verify(baseline=None):
     html = (THEME / 'example.html').read_text()
     parser = DeckParser()
     parser.feed(html)
-    assert len(parser.slides) == len(parser.images) == 5
+    assert len(parser.slides) == 5 and len(parser.images) == 4
     assert len(set(parser.ids)) == len(parser.ids), 'Duplicate IDs'
     assert all(s.get('data-notes') for s in parser.slides)
     for n, image in enumerate(parser.images):
-        asset = 'logo-white-mark.png' if n in (0, 4) else 'logo-original.png'
+        asset = 'logo-white-mark.png' if n == 0 else 'logo-original.png'
         assert base64.b64decode(image['src'].split(',', 1)[1]) == (THEME / 'assets' / asset).read_bytes()
         assert image.get('alt')
+    assert 'jm-section-title' in parser.slides[-1]['class']
+    last = html.rsplit('<section', 1)[-1].split('</section>', 1)[0]
+    assert '<img' not in last and 'jm-logo-tagline' not in last
+    assert (THEME / 'section-title.html').is_file()
     assert (ROOT / 'viewport-base.css').read_text() in html
     assert (THEME / 'joymaker.css').read_text() in html
     for script in re.findall(r'<script>([\s\S]*?)</script>', html):
@@ -91,7 +95,11 @@ def verify(baseline=None):
             tree = ET.fromstring(z.read(name))
             assert title in ''.join(n.text or '' for n in tree.findall('.//a:t', ns))
             assert len(tree.findall('.//p:sp', ns)) > 4, 'Slide flattened instead of editable'
-            assert tree.findall('.//p:pic', ns), 'Missing logo'
+            if title != expected[4]:
+                assert tree.findall('.//p:pic', ns), 'Missing logo'
+            else:
+                # The single picture is the gradient background; no logo lockup.
+                assert len(tree.findall('.//p:pic', ns)) == 1
             if title in (expected[0], expected[4]):
                 assert any(n.text == '欢乐从这里开始' for n in tree.findall('.//a:t', ns)), 'Slogan must stay native text'
     print('PASS: valid 16:9 PPTX, five editable slides, five notes, original logo bytes embedded')

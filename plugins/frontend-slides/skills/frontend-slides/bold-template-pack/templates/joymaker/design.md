@@ -9,6 +9,7 @@ not replace or modify any existing preset, template, or presentation controller.
 - [preview.md](preview.md): compact cover recipe for style discovery.
 - [joymaker.css](joymaker.css): reusable, scoped visual tokens and components.
 - [example.html](example.html): self-contained five-slide reference deck.
+- [section-title.html](section-title.html): standalone logo-free chapter title.
 - [example.pptx](example.pptx): editable PowerPoint with original logo assets,
   native text/cards, and speaker notes. Native PowerPoint playback uses Office
   controls rather than the HTML toolbar.
@@ -50,10 +51,15 @@ split long titles or slides rather than crowd the top-right brand.
 
 ## Layout grammar
 
-1. **Cover / closing** (`jm-cover`): white text on the orange gradient, plain
+1. **Opening cover** (`jm-cover`): white text on the orange gradient, plain
    text brand or supplied white logo at (112, 96), title at (112, 500),
-   subtitle below. Closing may center the main statement vertically. At most
+   subtitle below. Reserve the logo and crisp tagline for the opening cover. At most
    two faint cropped curves can add depth; content remains unobscured.
+   **Later title pages** (`jm-cover jm-section-title`): retain the same orange
+   gradient, two faint curves, white type and footer. Omit logo, brand lockup
+   and slogan markup; place the title at (112, 470). Use this variant for every
+   section title or title-style closing after the opening. Keep content-page
+   logos and full-bleed image finales as authored.
 2. **Content header** (`jm-header`): navy title, crimson 16×86px bar at its
    left, gray subtitle beneath, plain text brand or supplied logo in the
    top-right. Content starts at y=300 or lower. Bottom rule at y=1000.

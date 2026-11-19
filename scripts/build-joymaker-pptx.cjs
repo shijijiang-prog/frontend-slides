@@ -40,9 +40,9 @@ async function main() {
         slide.background = {color:colors.surface};
         if(cover) slide.addImage({data:background,x:0,y:0,w:unit(1920),h:unit(1080)});
         const lw=cover?460:280;
-        slide.addImage({path:cover?path.join(theme,'assets/logo-white-mark.png'):logo,x:unit(cover?112:1528),y:unit(cover?96:48),w:unit(lw),h:unit(lw*(cover?130/400:208/550)),altText:cover?'参考封面的原始白色 Logo':'欢乐互娱原始 Logo：欢乐从这里开始'});
+        if(!cover || page===1) slide.addImage({path:cover?path.join(theme,'assets/logo-white-mark.png'):logo,x:unit(cover?112:1528),y:unit(cover?96:48),w:unit(lw),h:unit(lw*(cover?130/400:208/550)),altText:cover?'参考封面的原始白色 Logo':'欢乐互娱原始 Logo：欢乐从这里开始'});
         // Native text keeps the small reference slogan crisp at any zoom.
-        if(cover) text(slide,'欢乐从这里开始',273,196,290,40,26,{color:'FFFFFF',bold:true,charSpacing:5});
+        if(cover && page===1) text(slide,'欢乐从这里开始',273,196,290,40,26,{color:'FFFFFF',bold:true,charSpacing:5});
         rule(slide,112,1000,1696,cover?'FFD0B0':colors.line);
         text(slide,page===2||page===3?'示例内容与数据，不代表公司披露':'公司介绍 · 示例内容',112,1016,1250,30,20,{color:cover?'FFFFFF':colors.muted});
         text(slide,`${String(page).padStart(2,'0')} / 05`,1650,1016,158,30,20,{color:cover?'FFFFFF':colors.muted,align:'right'});
@@ -94,8 +94,8 @@ async function main() {
     });
     s.addNotes('用开放式三栏呈现路线图。每栏一个行动与一条解释，避免过多卡片。');
 
-    s=base(5,true); text(s,'欢乐从这里开始',112,440,1696,160,108,{color:'FFFFFF',bold:true});
-    text(s,'谢谢关注，期待与您同行',112,632,1696,70,32,{color:'FFFFFF'});
+    s=base(5,true); text(s,'欢乐从这里开始',112,470,1696,160,108,{color:'FFFFFF',bold:true});
+    text(s,'谢谢关注，期待与您同行',112,664,1696,70,32,{color:'FFFFFF'});
     s.addNotes('收束：让产品体验与玩家价值回到同一个目标。可在这里邀请提问。');
     await fs.mkdir(path.dirname(output),{recursive:true});
     await pptx.writeFile({fileName:output});

@@ -39,6 +39,11 @@
 .joymaker .jm-cover h1, .joymaker .jm-cover h2 { font-size: 108px; line-height: 1.35; font-weight: 900; letter-spacing: .02em; }
 .joymaker .jm-cover-copy p { margin-top: 32px; font-size: 32px; line-height: 1.5; }
 .joymaker .jm-cover .jm-footer { color: #fff; border-color: rgba(255,255,255,.4); }
+/* Logo-free section titles reuse the cover atmosphere after the opening slide.
+   Use jm-cover jm-section-title; omit all logo/brand markup. */
+.joymaker .jm-section-title :is(.jm-logo, .jm-logo-tagline, .jm-brand) { display: none; }
+.joymaker .jm-cover.jm-section-title .jm-cover-copy { top: 470px; }
+.joymaker .jm-section-title .jm-cover-copy h2 { max-width: 1696px; }
 /* Text-led business overview. Cards are reserved for numerical evidence. */
 .joymaker .jm-overview { margin-top: 100px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
 .joymaker .jm-overview h3 { font-size: 34px; line-height: 1.35; color: var(--jm-orange); font-weight: 800; }

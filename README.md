@@ -637,3 +637,5 @@ Created by [@zarazhangrui](https://github.com/zarazhangrui). This repo is a fork
 ## License
 
 MIT — Use it, modify it, share it.
+
+Joymaker includes a [logo-free section-title example](bold-template-pack/templates/joymaker/section-title.html). Keep the supplied logo on the opening cover; use `jm-cover jm-section-title` for subsequent title pages.

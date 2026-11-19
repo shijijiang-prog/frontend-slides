@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>joymaker · 无 Logo 章节标题页</title>
+<!-- Offline reference deck: inline CSS/JS, supplied original logo assets, illustrative data. -->
+<style>
+* { box-sizing: border-box; }
+/* ===========================================
+   FIXED 16:9 STAGE: MANDATORY BASE STYLES
+   Include this ENTIRE file in every presentation.
+   Slides are authored at 1920×1080 and scaled as a whole.
+   =========================================== */
+
+/* 1. Lock the browser viewport */
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    background: var(--stage-bg, #000);
+}
+
+/* 2. Full-window deck viewport */
+.deck-viewport {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    background: var(--stage-bg, #000);
+}
+
+/* 3. Fixed 16:9 design canvas.
+   JavaScript sets transform: translate(...) scale(...). */
+.deck-stage {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    transform-origin: 0 0;
+    background: var(--slide-bg, #fff);
+}
+
+/* 4. Slides stack inside the fixed stage.
+   Content must be laid out at 1920×1080, not reflowed per device. */
+.slide {
+    position: absolute;
+    inset: 0;
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    background: var(--slide-bg, #fff);
+}
+
+.slide.active,
+.slide.visible {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 1;
+}
+
+/* 5. Keep media inside authored slide bounds */
+img,
+video,
+canvas,
+svg {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* 6. Presentation chrome stays outside the slide design system */
+.deck-controls {
+    position: fixed;
+    left: 50%;
+    bottom: 22px;
+    transform: translateX(-50%);
+    z-index: 1000;
+}
+
+/* 7. Print one fixed-size slide per page */
+@media print {
+    html,
+    body {
+        width: 1920px;
+        height: auto;
+        overflow: visible;
+        background: #fff;
+    }
+
+    .deck-viewport {
+        position: static;
+        overflow: visible;
+        background: #fff;
+    }
+
+    .deck-stage {
+        position: static;
+        width: auto;
+        height: auto;
+        transform: none !important;
+        background: none;
+    }
+
+    .slide {
+        position: relative;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        width: 1920px;
+        height: 1080px;
+        break-after: page;
+        page-break-after: always;
+    }
+
+    .slide:last-child {
+        break-after: auto;
+        page-break-after: auto;
+    }
+
+    .deck-controls {
+        display: none !important;
+    }
+}
+
+/* 8. Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.2s !important;
+    }
+}
+
+/* joymaker: opt-in visual theme. Pair with the complete viewport-base.css.
+   All measurements are on the fixed 1920×1080 stage. */
+.joymaker {
+    --jm-surface: #edf1f2;
+    --jm-card: #fff;
+    --jm-navy: #1c385f;
+    --jm-body: #606568;
+    --jm-muted: #747a7e;
+    --jm-orange: #f45100;
+    --jm-coral: #f46b43;
+    --jm-red: #c81036;
+    --jm-line: #d9dee0;
+    --jm-font: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    --stage-bg: #192536;
+    --slide-bg: var(--jm-surface);
+    font-family: var(--jm-font);
+    color: var(--jm-body);
+}
+.joymaker .slide { padding: 80px 112px 88px; }
+.joymaker .slide *, .joymaker .slide *::before, .joymaker .slide *::after { box-sizing: border-box; }
+.joymaker .slide :is(h1, h2, h3, p, dl, dd) { margin: 0; }
+.joymaker .jm-brand { position: absolute; top: 76px; right: 112px; color: var(--jm-body); font-size: 32px; font-weight: 600; line-height: 1.35; }
+.joymaker .jm-brand small { display: block; margin-top: 6px; font-size: 16px; letter-spacing: .3em; }
+.joymaker .jm-header { position: relative; width: 1400px; padding-left: 40px; }
+.joymaker .jm-header::before { content: ''; position: absolute; left: 0; top: 8px; width: 16px; height: 86px; background: var(--jm-red); }
+.joymaker .jm-header h2 { color: var(--jm-navy); font-size: 60px; font-weight: 900; line-height: 1.4; }
+.joymaker .jm-header p { margin-top: 24px; font-size: 28px; line-height: 1.6; }
+.joymaker .jm-footer { position: absolute; bottom: 48px; left: 112px; right: 112px; border-top: 2px solid var(--jm-line); padding-top: 14px; display: flex; justify-content: space-between; font-size: 20px; color: var(--jm-muted); }
+.joymaker .jm-logo { position: absolute; top: 48px; right: 112px; width: 280px; height: auto; object-fit: contain; }
+.joymaker .jm-cover .jm-logo { top: 96px; left: 112px; right: auto; width: 460px; }
+.joymaker .jm-logo-tagline { position: absolute; left: 273px; top: 196px; color: #fff; font-size: 26px; font-weight: 600; line-height: 1.4; letter-spacing: 10px; white-space: nowrap; }
+/* Warm covers, with two quiet curves instead of the dense screenshot waves. */
+.joymaker .jm-cover { background: linear-gradient(135deg, #ffa451 0%, #ff8438 50%, #ff5725 100%); color: #fff; }
+.joymaker .jm-cover::before, .joymaker .jm-cover::after { content: ''; position: absolute; border: 2px solid rgba(255,255,255,.13); border-radius: 50%; width: 2300px; height: 1100px; left: -150px; top: 360px; transform: rotate(-10deg); pointer-events: none; }
+.joymaker .jm-cover::after { top: 420px; left: -120px; border-color: rgba(255,225,151,.18); }
+.joymaker .jm-cover .jm-brand { top: 96px; left: 112px; right: auto; color: #fff; font-size: 48px; }
+.joymaker .jm-cover .jm-brand small { font-size: 20px; }
+.joymaker .jm-cover-copy { position: absolute; left: 112px; right: 112px; top: 500px; z-index: 1; }
+.joymaker .jm-cover h1, .joymaker .jm-cover h2 { font-size: 108px; line-height: 1.35; font-weight: 900; letter-spacing: .02em; }
+.joymaker .jm-cover-copy p { margin-top: 32px; font-size: 32px; line-height: 1.5; }
+.joymaker .jm-cover .jm-footer { color: #fff; border-color: rgba(255,255,255,.4); }
+/* Logo-free section titles reuse the cover atmosphere after the opening slide.
+   Use jm-cover jm-section-title; omit all logo/brand markup. */
+.joymaker .jm-section-title :is(.jm-logo, .jm-logo-tagline, .jm-brand) { display: none; }
+.joymaker .jm-cover.jm-section-title .jm-cover-copy { top: 470px; }
+.joymaker .jm-section-title .jm-cover-copy h2 { max-width: 1696px; }
+/* Text-led business overview. Cards are reserved for numerical evidence. */
+.joymaker .jm-overview { margin-top: 100px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+.joymaker .jm-overview h3 { font-size: 34px; line-height: 1.35; color: var(--jm-orange); font-weight: 800; }
+.joymaker .jm-overview p { margin-top: 20px; font-size: 28px; line-height: 1.6; }
+.joymaker .jm-section-label { margin-top: 72px !important; padding-top: 28px; border-top: 2px solid var(--jm-line); font-size: 28px; font-weight: 600; }
+.joymaker .jm-kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin-top: 32px; }
+.joymaker .jm-card { padding: 40px; border-radius: 24px; background: var(--jm-card); }
+.joymaker .jm-value { color: var(--jm-orange); font-size: 78px; font-weight: 800; line-height: 1.35; font-variant-numeric: tabular-nums; }
+.joymaker .jm-value small { font-size: 32px; }
+.joymaker .jm-card p { margin-top: 16px; font-size: 24px; line-height: 1.45; }
+/* Two aligned metric cards with four supporting values each. */
+.joymaker .jm-comparison { margin-top: 150px; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.joymaker .jm-comparison .jm-card { min-height: 430px; padding: 44px; }
+.joymaker .jm-card h3 { color: var(--jm-coral); font-size: 34px; font-weight: 800; line-height: 1.35; margin-bottom: 20px; }
+.joymaker .jm-metrics { margin-top: 28px !important; padding-top: 24px; border-top: 2px solid var(--jm-line); display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.joymaker .jm-metrics dt { color: var(--jm-muted); font-size: 24px; line-height: 1.45; }
+.joymaker .jm-metrics dd { color: var(--jm-orange); font-size: 40px; font-weight: 800; line-height: 1.4; margin-top: 12px; }
+/* Open columns keep narrative slides distinct from the KPI layouts. */
+.joymaker .jm-roadmap { margin-top: 140px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 64px; }
+.joymaker .jm-step { border-top: 2px solid var(--jm-line); padding-top: 32px; }
+.joymaker .jm-step .jm-value { font-size: 64px; }
+.joymaker .jm-step h3 { margin-top: 28px; color: var(--jm-navy); font-size: 38px; line-height: 1.35; }
+.joymaker .jm-step p { margin-top: 28px; font-size: 28px; line-height: 1.7; }
+.joymaker .jm-closing .jm-cover-copy { top: 440px; }
+/* Optional restrained entrance, disabled for print and reduced motion. */
+.joymaker .jm-reveal { opacity: 0; transform: translateY(12px); transition: opacity .24s ease, transform .24s ease; }
+.joymaker .slide.active .jm-reveal, .joymaker .slide.visible .jm-reveal { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+    .joymaker .jm-reveal { transition: none !important; transform: none; }
+}
+@media print {
+    .joymaker .jm-reveal { opacity: 1; transform: none; }
+    .joymaker .slide { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+}
+
+/* Example-only UI. Slide content never reflows on smaller devices. */
+.joymaker .deck-controls { bottom: 10px; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 6px; width: max-content; max-width: calc(100% - 16px); padding: 7px; border-radius: 10px; background: #192536; color: #fff; font: 14px/1.4 sans-serif; }
+.joymaker button, .joymaker input { font: inherit; }
+.joymaker button { border: 1px solid #708197; background: #23364e; color: #fff; border-radius: 5px; padding: 6px 10px; cursor: pointer; }
+.joymaker button:disabled { opacity: .45; cursor: default; }
+.joymaker button:focus-visible, .joymaker input:focus-visible { outline: 3px solid #ffb465; outline-offset: 2px; }
+.joymaker button[aria-pressed="true"] { background: #fff; color: #1c385f; }
+.joymaker #jump { width: 46px; padding: 4px; }
+.joymaker #pageCount { min-width: 40px; text-align: center; }
+.joymaker #presenter { position: fixed; right: 0; top: 0; bottom: 90px; width: 330px; padding: 24px; box-sizing: border-box; overflow: auto; background: #fff; color: #1c385f; z-index: 20; font: 16px/1.6 var(--jm-font); }
+.joymaker #presenter h2 { font-size: 22px; }.joymaker #presenter h3 { margin-bottom: 4px; font-size: 16px; }.joymaker #presenter p { margin-top: 0; }
+.joymaker #presenter #timer { font: 36px/1.2 monospace; margin: 24px 0; }
+.joymaker.presenter-open .deck-viewport { right: 340px; bottom: 90px; }
+.joymaker #contents { width: min(480px, calc(100% - 40px)); border: 0; border-radius: 12px; padding: 24px; color: #1c385f; font: 16px/1.5 var(--jm-font); }
+.joymaker #contents::backdrop { background: rgba(0,0,0,.65); }
+.joymaker #contents li { margin-bottom: 12px; }
+.joymaker #status { position: fixed; top: 8px; left: 50%; transform: translateX(-50%); background: #192536; color: #fff; font: 14px/1.5 sans-serif; z-index: 2000; margin: 0; padding: 4px 8px; border-radius: 4px; }
+.joymaker #status:empty { display: none; }
+.joymaker.editing [contenteditable="true"] { outline: 2px dashed var(--jm-navy); outline-offset: 6px; cursor: text; }
+@media (max-width: 600px) {
+    .joymaker #presenter { top: 55%; bottom: 98px; width: 100%; }
+    .joymaker.presenter-open .deck-viewport { right: 0; bottom: 45%; }
+    .joymaker .deck-controls { font-size: 12px; gap: 4px; }
+    .joymaker .deck-controls button { padding: 5px 7px; }
+}
+@media print {
+    @page { size: 20in 11.25in; margin: 0; }
+    .joymaker .deck-controls, .joymaker #presenter, .joymaker #contents, .joymaker #status { display: none !important; }
+}
+
+.joymaker [data-edit] { white-space: pre-line; }
+</style>
+</head>
+<body class="joymaker">
+<!-- Reference content is illustrative. No original screenshots or business figures are bundled. -->
+<div class="deck-viewport"><main class="deck-stage" id="deckStage" aria-label="演示文稿">
+<section class="slide jm-cover jm-section-title active visible" data-title="全面 Agent 化的实践" data-notes="收束：让产品体验与玩家价值回到同一个目标。可在这里邀请提问。">
+    
+    <div class="jm-cover-copy jm-reveal"><h2 data-edit="closing">全面 Agent 化的实践</h2><p data-edit="closing-subtitle">以实践连接研发、发行与运营</p></div>
+    <footer class="jm-footer"><span>公司介绍 · 示例内容</span><span>01 / 01</span></footer>
+</section>
+</main></div>
+
+<!-- Playback and authoring controls are outside the fixed slide canvas. -->
+<nav class="deck-controls" aria-label="播放控制">
+    <button id="prev" aria-label="上一页">←</button><output id="pageCount" aria-live="polite"></output><button id="next" aria-label="下一页">→</button>
+    <button id="contentsButton" title="目录 (T)">目录</button>
+    <label>跳至 <input id="jump" type="number" min="1" max="5" value="1" aria-label="跳至页码"></label><button id="jumpButton">跳转</button>
+    <button id="presenterButton" title="演讲者 (P)" aria-pressed="false">演讲者</button>
+    <button id="fullscreenButton" title="全屏 (F)">全屏</button>
+    <button id="editButton" title="编辑 (E)" aria-pressed="false">编辑</button><button id="downloadButton">下载</button>
+</nav>
+<aside id="presenter" hidden aria-label="演讲者视图">
+    <h2>演讲者视图</h2><p id="timer" aria-label="已用时间">00:00</p><h3>当前页</h3><p id="currentTitle"></p><h3>讲稿</h3><p id="notes"></p><h3>下一页</h3><p id="nextTitle"></p><button id="closePresenter">返回播放 (P)</button>
+</aside>
+<dialog id="contents" aria-labelledby="contentsTitle"><h2 id="contentsTitle">目录</h2><ol id="contentsList"></ol><button id="closeContents">关闭 (Esc)</button></dialog>
+<p id="status" role="status"></p>
+
+<script>
+/* One self-contained reference controller. Applying joymaker.css does not
+   require replacing an existing deck's controller or speaker tools. */
+class SlidePresentation {
+    constructor() {
+        this.stage = document.getElementById('deckStage');
+        this.viewport = document.querySelector('.deck-viewport');
+        this.slides = [...this.stage.querySelectorAll('.slide')];
+        this.current = 0;
+        this.editing = false;
+        this.started = Date.now();
+        this.storageKey = 'frontend-slides:joymaker:example:v2';
+        this.statusTimer = null;
+        this.restoreEdits();
+        this.bindControls();
+        this.buildContents();
+        this.show(this.hashIndex());
+        addEventListener('hashchange', () => this.show(this.hashIndex()));
+        new ResizeObserver(() => this.scale()).observe(this.viewport);
+        this.scale();
+        setInterval(() => {
+            const seconds = Math.floor((Date.now() - this.started) / 1000);
+            document.getElementById('timer').textContent = `${String(Math.floor(seconds / 60)).padStart(2, '0')}:${String(seconds % 60).padStart(2, '0')}`;
+        }, 1000);
+    }
+    hashIndex() { return (/^#\d+$/.test(location.hash) ? Number(location.hash.slice(1)) : 1) - 1; }
+    scale() {
+        const w = this.viewport.clientWidth, h = this.viewport.clientHeight;
+        const factor = Math.min(w / 1920, h / 1080);
+        this.stage.style.transform = `translate(${(w - 1920 * factor) / 2}px, ${(h - 1080 * factor) / 2}px) scale(${factor})`;
+    }
+    show(index) {
+        if (!Number.isFinite(index)) return;
+        this.current = Math.max(0, Math.min(Math.round(index), this.slides.length - 1));
+        this.slides.forEach((slide, i) => {
+            const active = i === this.current;
+            slide.classList.toggle('active', active);
+            slide.classList.toggle('visible', active);
+            slide.setAttribute('aria-hidden', String(!active));
+            slide.inert = !active;
+        });
+        const slide = this.slides[this.current];
+        document.getElementById('pageCount').textContent = `${this.current + 1} / ${this.slides.length}`;
+        document.getElementById('jump').value = this.current + 1;
+        document.getElementById('prev').disabled = this.current === 0;
+        document.getElementById('next').disabled = this.current === this.slides.length - 1;
+        document.getElementById('currentTitle').textContent = slide.dataset.title;
+        document.getElementById('notes').textContent = slide.dataset.notes || '';
+        document.getElementById('nextTitle').textContent = this.slides[this.current + 1]?.dataset.title || '已到最后一页';
+        // Some browsers restrict history on local files; navigation still works.
+        try { history.replaceState(null, '', `#${this.current + 1}`); } catch { /* local file */ }
+    }
+    notify(message) {
+        document.getElementById('status').textContent = message;
+        clearTimeout(this.statusTimer);
+        this.statusTimer = setTimeout(() => { document.getElementById('status').textContent = ''; }, 3500);
+    }
+    buildContents() {
+        const list = document.getElementById('contentsList');
+        this.slides.forEach((slide, i) => {
+            const item = document.createElement('li'), button = document.createElement('button');
+            button.textContent = slide.dataset.title;
+            button.addEventListener('click', () => { this.show(i); this.closeContents(); });
+            item.append(button); list.append(item);
+        });
+    }
+    openContents() { document.getElementById('contents').showModal(); }
+    closeContents() { document.getElementById('contents').close(); document.getElementById('contentsButton').focus(); }
+    togglePresenter() {
+        const open = document.body.classList.toggle('presenter-open');
+        document.getElementById('presenter').hidden = !open;
+        document.getElementById('presenterButton').setAttribute('aria-pressed', String(open));
+        if (!open) document.getElementById('presenterButton').focus();
+        this.scale();
+    }
+    async fullscreen() {
+        try {
+            if (document.fullscreenElement) await document.exitFullscreen();
+            else await document.documentElement.requestFullscreen();
+        } catch { this.notify('当前浏览器未开启全屏，可使用浏览器全屏菜单'); }
+    }
+    toggleEditing() {
+        this.editing = !this.editing;
+        document.body.classList.toggle('editing', this.editing);
+        this.stage.querySelectorAll('[data-edit]').forEach(node => {
+            if (this.editing) node.setAttribute('contenteditable', 'true');
+            else node.removeAttribute('contenteditable');
+        });
+        document.getElementById('editButton').setAttribute('aria-pressed', String(this.editing));
+        if (!this.editing) this.saveEdits();
+        this.notify(this.editing ? '编辑已开启，点击文字修改；完成后点击编辑按钮退出' : '编辑已结束');
+    }
+    restoreEdits() {
+        try {
+            const saved = JSON.parse(localStorage.getItem(this.storageKey) || '{}');
+            this.stage.querySelectorAll('[data-edit]').forEach(node => {
+                if (typeof saved[node.dataset.edit] === 'string') node.textContent = saved[node.dataset.edit];
+            });
+        } catch { /* Storage is optional, including for file:// and private windows. */ }
+    }
+    saveEdits() {
+        try {
+            const edits = JSON.parse(localStorage.getItem(this.storageKey) || '{}');
+            // Hidden slides have no rendered innerText. Only persist the visible page.
+            this.stage.querySelectorAll('.slide.active [data-edit]').forEach(node => { edits[node.dataset.edit] = node.innerText; });
+            localStorage.setItem(this.storageKey, JSON.stringify(edits));
+        }
+        catch { this.notify('浏览器无法保存编辑，请点击下载保留修改'); }
+    }
+    download() {
+        if (this.editing) this.toggleEditing();
+        const copy = document.documentElement.cloneNode(true);
+        copy.querySelector('body').classList.remove('presenter-open', 'editing');
+        copy.querySelector('#presenter').hidden = true;
+        copy.querySelector('#presenterButton').setAttribute('aria-pressed', 'false');
+        copy.querySelector('#contents').removeAttribute('open');
+        copy.querySelector('#contentsList').replaceChildren();
+        copy.querySelector('#status').textContent = '';
+        copy.querySelectorAll('[contenteditable]').forEach(node => node.removeAttribute('contenteditable'));
+        const url = URL.createObjectURL(new Blob(['<!DOCTYPE html>\n' + copy.outerHTML], {type: 'text/html;charset=utf-8'}));
+        const link = document.createElement('a');
+        link.href = url; link.download = 'joymaker-presentation.html'; link.click();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }
+    bindControls() {
+        const on = (id, action) => document.getElementById(id).addEventListener('click', action);
+        on('prev', () => this.show(this.current - 1)); on('next', () => this.show(this.current + 1));
+        on('contentsButton', () => this.openContents()); on('closeContents', () => this.closeContents());
+        on('presenterButton', () => this.togglePresenter()); on('closePresenter', () => this.togglePresenter());
+        on('fullscreenButton', () => this.fullscreen()); on('editButton', () => this.toggleEditing());
+        on('downloadButton', () => this.download());
+        const jump = document.getElementById('jump');
+        const commitJump = () => { if (jump.value !== '') this.show(Number(jump.value) - 1); };
+        on('jumpButton', commitJump);
+        jump.addEventListener('change', commitJump);
+        jump.addEventListener('keydown', event => { if (event.key === 'Enter') { event.preventDefault(); commitJump(); } });
+        this.stage.addEventListener('input', () => this.saveEdits());
+        addEventListener('keydown', event => {
+            // Inputs, editable text, modal dialogs, and native button activation own their keys.
+            if (event.target.closest('input, textarea, select, button, [contenteditable="true"]') || document.getElementById('contents').open || event.ctrlKey || event.metaKey || event.altKey) return;
+            if (['ArrowRight', 'ArrowDown', ' ', 'PageDown'].includes(event.key)) { event.preventDefault(); this.show(this.current + 1); }
+            if (['ArrowLeft', 'ArrowUp', 'PageUp'].includes(event.key)) { event.preventDefault(); this.show(this.current - 1); }
+            if (event.key === 'Home') { event.preventDefault(); this.show(0); }
+            if (event.key === 'End') { event.preventDefault(); this.show(this.slides.length - 1); }
+            if (event.key.toLowerCase() === 't') this.openContents();
+            if (event.key.toLowerCase() === 'p') this.togglePresenter();
+            if (event.key.toLowerCase() === 'f') this.fullscreen();
+            if (event.key.toLowerCase() === 'e') this.toggleEditing();
+        });
+        let touch = null;
+        this.viewport.addEventListener('touchstart', event => {
+            if (this.editing || event.touches.length !== 1) { touch = null; return; }
+            touch = {x: event.touches[0].clientX, y: event.touches[0].clientY};
+        }, {passive: true});
+        this.viewport.addEventListener('touchend', event => {
+            if (!touch) return;
+            const dx = event.changedTouches[0].clientX - touch.x, dy = event.changedTouches[0].clientY - touch.y;
+            if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) this.show(this.current + (dx < 0 ? 1 : -1));
+            touch = null;
+        }, {passive: true});
+        this.viewport.addEventListener('touchcancel', () => { touch = null; }, {passive: true});
+        let lastWheel = 0;
+        this.viewport.addEventListener('wheel', event => {
+            if (this.editing || document.getElementById('contents').open || event.ctrlKey) return;
+            if (Math.abs(event.deltaY) < 25 || Date.now() - lastWheel < 450) return;
+            event.preventDefault(); lastWheel = Date.now(); this.show(this.current + Math.sign(event.deltaY));
+        }, {passive: false});
+    }
+}
+window.presentation = new SlidePresentation();
+
+</script>
+</body>
+</html>

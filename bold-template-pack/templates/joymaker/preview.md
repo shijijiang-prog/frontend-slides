@@ -41,3 +41,9 @@ Use the user's actual title and context. Keep the style name, file paths,
 selection labels, and implementation notes out of the slide. A supplied real
 logo may be embedded; otherwise use a plain text company name. Do not redraw
 the sun logo or reuse the reference screenshots as slide backgrounds.
+
+## Later title pages
+
+Use `jm-cover jm-section-title` after the opening cover. The orange gradient
+and two thin curves remain; omit all logo and slogan markup. Keep the title
+left-aligned at x=112, y=470 with generous space above. See [section-title.html](section-title.html).
